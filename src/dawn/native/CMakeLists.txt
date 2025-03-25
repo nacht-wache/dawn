@@ -934,6 +934,14 @@ if (DAWN_BUILD_MONOLITHIC_LIBRARY)
         dawn_install_target(dawn_public_config)
         dawn_install_target(webgpu_dawn
             HEADERS ${webgpu_dawn_public_headers})
+
+        add_custom_command(
+            TARGET
+                webgpu_dawn
+            POST_BUILD
+            COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --prefix ${CMAKE_INSTALL_PREFIX}
+            COMMENT "Dawn: Installing webgpu_dawn into ${CMAKE_INSTALL_PREFIX}"
+        )
     endif ()
 endif ()
 
